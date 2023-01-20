@@ -35,6 +35,7 @@ app.use("/css",express.static(path.join(__dirname, "node_modules/bootstrap/dist/
 app.use("/js", express.static(path.join(__dirname, "node_modules/bootstrap/dist/js")));
 app.use("/js", express.static(path.join(__dirname, "node_modules/jquery/dist")));
 
+app.use("/img",express.static(path.join(__dirname, "public/images")));
 app.use("/js", express.static(path.join(__dirname, "public/javascripts")));
 
 // app.use("/node_modules/bootstrap/dist/css",express.static(__dirname));
@@ -64,6 +65,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// module.exports.handler = serverless(app); 
+module.exports.handler = serverless(app); 
 // app.listen(3000, () => console.log(`Listening on: 3000`));
-module.exports = app;
+// module.exports = app;
