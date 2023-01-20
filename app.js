@@ -64,6 +64,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports.handler = serverless(app); 
+// module.exports.handler = serverless(app); 
 // app.listen(3000, () => console.log(`Listening on: 3000`));
-// module.exports = app;
+module.exports = app;

@@ -4,7 +4,7 @@ $(document).ready(function(){
         method: "POST",
         crossDomain: true,
         headers: {"Content-Type": "application/json"},
-        url: "https://a9u9futgw0.execute-api.ap-northeast-1.amazonaws.com/users/post",
+        url: "https://a9u9futgw0.execute-api.ap-northeast-1.amazonaws.com/dev/users/post",
         datatype: 'html',
         data: JSON.stringify({
             para: 1
@@ -22,7 +22,7 @@ $(document).ready(function(){
         method: "GET",
         crossDomain: true,
         headers: {"Content-Type": "application/json"},
-        url: "https://a9u9futgw0.execute-api.ap-northeast-1.amazonaws.com/users",
+        url: "https://a9u9futgw0.execute-api.ap-northeast-1.amazonaws.com/dev/users",
         datatype: 'html',
         data: {
             para: 1
