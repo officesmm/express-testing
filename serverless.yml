@@ -11,9 +11,13 @@ functions:
     events: 
       - http: 
           path: /
-          method: ANY
+          method: GET
           cors: true
       - http: 
-          path: /{proxy+}
-          method: ANY
+          path: /users
+          method: GET
+          cors: true
+      - http: 
+          path: /users/post
+          method: POST
           cors: true

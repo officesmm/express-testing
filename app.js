@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expressHbs = require('express-handlebars');
 const hbs = require('hbs');
+// var hbsutils = require('hbs-utils')(hbs);
 var cors = require('cors')
 
 var indexRouter = require('./routes/index');
@@ -22,7 +23,11 @@ const partialsPath = path.join(__dirname, '/templates/partials')
 // Setup handlebars engine and views location
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
+
 hbs.registerPartials(partialsPath);
+
+// hbsutils.registerPartials(partialsPath);
+// hbsutils.registerWatchedPartials(partialsPath);
 
 
 app.use(logger('dev'));
@@ -36,6 +41,7 @@ app.use("/js", express.static(path.join(__dirname, "node_modules/bootstrap/dist/
 app.use("/js", express.static(path.join(__dirname, "node_modules/jquery/dist")));
 
 app.use("/img",express.static(path.join(__dirname, "public/images")));
+app.use("/css",express.static(path.join(__dirname, "public/stylesheets")));
 app.use("/js", express.static(path.join(__dirname, "public/javascripts")));
 
 // app.use("/node_modules/bootstrap/dist/css",express.static(__dirname));
@@ -65,6 +71,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports.handler = serverless(app); 
+// module.exports.handler = serverless(app); 
 // app.listen(3000, () => console.log(`Listening on: 3000`));
-// module.exports = app;
+module.exports = app;
