@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expressHbs = require('express-handlebars');
 const hbs = require('hbs');
-// var hbsutils = require('hbs-utils')(hbs);
+var hbsutils = require('hbs-utils')(hbs);
 var cors = require('cors')
 
 var indexRouter = require('./routes/index');
@@ -23,11 +23,9 @@ const partialsPath = path.join(__dirname, '/templates/partials')
 // Setup handlebars engine and views location
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
-
-hbs.registerPartials(partialsPath);
-
-// hbsutils.registerPartials(partialsPath);
-// hbsutils.registerWatchedPartials(partialsPath);
+// hbs.registerPartials(partialsPath);
+hbsutils.registerPartials(partialsPath);
+hbsutils.registerWatchedPartials(partialsPath);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,11 +37,17 @@ app.use("/css",express.static(path.join(__dirname, "node_modules/bootstrap/dist/
 app.use("/js", express.static(path.join(__dirname, "node_modules/bootstrap/dist/js")));
 app.use("/js", express.static(path.join(__dirname, "node_modules/jquery/dist")));
 
-// app.use("/img",express.static(path.join(__dirname, "public/images")));
-app.use("/js", express.static(path.join(__dirname, "public/javascripts")));
+app.use("/img",express.static(path.join(__dirname, "public/images")));
 app.use("/css",express.static(path.join(__dirname, "public/stylesheets")));
+app.use("/js", express.static(path.join(__dirname, "public/javascripts")));
 
-app.use(express.static(publicDirectoryPath));
+// app.use("/node_modules/bootstrap/dist/css",express.static(__dirname));
+// app.use("/node_modules/bootstrap/dist/js", express.static(__dirname));
+// app.use("/node_modules/jquery/dist", express.static(__dirname));
+
+// app.use("/public/javascripts", express.static(__dirname));
+
+// app.use(express.static(publicDirectoryPath))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
