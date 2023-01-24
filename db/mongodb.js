@@ -33,7 +33,6 @@ async function getUserData(userID) {
     });
 }
 
-
 async function updateUserDecision(userID, userDecision) {
     return new Promise(async (resolve, reject) => {
       try {
