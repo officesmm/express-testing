@@ -174,7 +174,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/sample-app/dev/1674466069963-2023-01-23T09:27:49.963Z/sample-app.zip"
+                "S3Key": "serverless/sample-app/dev/1674522627649-2023-01-24T01:10:27.649Z/sample-app.zip"
               },
               "Handler": "app/app.handler",
               "Runtime": "nodejs16.x",
@@ -192,14 +192,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionR8vHQZ3KGCmXX1JZsqQwXUuHdu92vBCuxyaIiZXPUbg": {
+          "AppLambdaVersionN91JXBQYsPpuCrZAKQfGxbHzNPzKjgyxVmHaqOSEtJU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "9QrPwjZWcBw/jimbeBDi7a5FKgRiimQu07STZcW6GI8="
+              "CodeSha256": "r952wD7i5vQO8zkC3oyI9Ty1VM5eb3sXKBKam9tJ4Xs="
             }
           },
           "ApiGatewayRestApi": {
@@ -520,7 +520,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1674466057596": {
+          "ApiGatewayDeployment1674522613931": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -587,7 +587,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionR8vHQZ3KGCmXX1JZsqQwXUuHdu92vBCuxyaIiZXPUbg"
+              "Ref": "AppLambdaVersionN91JXBQYsPpuCrZAKQfGxbHzNPzKjgyxVmHaqOSEtJU"
             },
             "Export": {
               "Name": "sls-sample-app-dev-AppLambdaFunctionQualifiedArn"
@@ -789,7 +789,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionR8vHQZ3KGCmXX1JZsqQwXUuHdu92vBCuxyaIiZXPUbg"
+        "versionLogicalId": "AppLambdaVersionN91JXBQYsPpuCrZAKQfGxbHzNPzKjgyxVmHaqOSEtJU"
       }
     },
     "configValidationMode": "warn",
@@ -808,7 +808,7 @@
     "artifact": "C:\\Users\\Soe Myat Min\\Documents\\8 Extension Folder\\8.0 Extension Folder\\8.02\\ExpressTesting\\.serverless\\sample-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/sample-app/dev/1674466069963-2023-01-23T09:27:49.963Z",
+    "artifactDirectoryName": "serverless/sample-app/dev/1674522627649-2023-01-24T01:10:27.649Z",
     "artifact": "sample-app.zip"
   }
 }
