@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var dbinfo = require('.././db/mongodb');
+
 var car =[{
   name: "red car",
   color: "red",
@@ -11,19 +13,25 @@ var car =[{
   size: "small",
 }]
 
-/* GET users listing. */
 router.post('/post', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   console.log(req.body.para);
   res.send(JSON.stringify(car));
 });
 
 router.get('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   console.log(req.query.para);
-  res.send(JSON.stringify(car));
+  res.send("JSON.stringify(car)");
+});
+
+router.get('/getalluser',async function(req, res, next) {
+  data = await dbinfo.getUserData("2");
+  res.send(data);
+});
+
+router.get('/updateUserDecision',async function(req, res, next) {
+  update_result = await dbinfo.updateUserDecision("1","1");
+  updated_data = await dbinfo.getUserData("1");
+  res.send({updated_data,update_result});
 });
 
 module.exports = router;

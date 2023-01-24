@@ -174,7 +174,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/sample-app/dev/1674525252166-2023-01-24T01:54:12.166Z/sample-app.zip"
+                "S3Key": "serverless/sample-app/dev/1674525797169-2023-01-24T02:03:17.169Z/sample-app.zip"
               },
               "Handler": "app/app.handler",
               "Runtime": "nodejs16.x",
@@ -520,7 +520,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1674525248380": {
+          "ApiGatewayDeployment1674525791808": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -808,7 +808,7 @@
     "artifact": "C:\\Users\\Soe Myat Min\\Documents\\8 Extension Folder\\8.0 Extension Folder\\8.02\\ExpressTesting\\.serverless\\sample-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/sample-app/dev/1674525252166-2023-01-24T01:54:12.166Z",
+    "artifactDirectoryName": "serverless/sample-app/dev/1674525797169-2023-01-24T02:03:17.169Z",
     "artifact": "sample-app.zip"
   }
 }

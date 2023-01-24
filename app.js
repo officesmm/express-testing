@@ -1,4 +1,5 @@
 const serverless = require('serverless-http');
+var mongo = require('mongodb');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -12,6 +13,8 @@ var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+// var dbclient = require('./db/mongodb');
+
 var app = express();
 app.use(cors({origin: '*'}));
 app.options('*', cors());
@@ -20,7 +23,7 @@ app.options('*', cors());
 const viewsPath = path.join(__dirname, '/templates/views')
 const partialsPath = path.join(__dirname, '/templates/partials')
 
-// Setup handlebars engine and views location
+// Setup handlebars engine and views location 
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 // hbs.registerPartials(partialsPath);
@@ -68,6 +71,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports.handler = serverless(app); 
+// module.exports.handler = serverless(app); 
 // app.listen(3000, () => console.log(`Listening on: 3000`));
-// module.exports = app;
+module.exports = app;
