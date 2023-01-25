@@ -16,8 +16,7 @@ router.get('/', function(req, res, next) {
   res.render('admin/admin', { 
     title: 'Login',
     tab: 'table',
-    selection: 'table',
-    // proPlayer: taber()
+    selection: 'allitem'
   });
 });
 
