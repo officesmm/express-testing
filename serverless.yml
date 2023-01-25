@@ -11,9 +11,17 @@ functions:
     events: 
       - http: 
           path: /
-          method: ANY
+          method: GET
           cors: true
       - http: 
-          path: /{proxy+}
+          path: /users
+          method: GET
+          cors: true
+      - http: 
+          path: /users/post
+          method: POST
+          cors: true
+      - http:
+          path: /{any+} # this matches any path, the token 'any' doesn't mean anything special
           method: ANY
           cors: true
