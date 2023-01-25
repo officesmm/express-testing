@@ -5,7 +5,9 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { 
     image_source: 'https://smm-image-source.s3.ap-northeast-1.amazonaws.com',
-    title: 'Soe Myat Min' });
+    title: 'Soe Myat Min',
+    root: 'localhost:3000/public'
+  });
 });
 
 module.exports = router;
