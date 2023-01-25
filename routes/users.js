@@ -3,15 +3,19 @@ var router = express.Router();
 
 var dbinfo = require('.././db/mongodb');
 
-var car =[{
-  name: "red car",
-  color: "red",
-  size: "big",
-},{
-  name: "blue car",
-  color: "blue",
-  size: "small",
-}]
+var car ={cars: [{
+    name: "red car",
+    color: "red",
+    size: "big",
+  },
+  {
+    name: "blue car",
+    color: "blue",
+    size: "small",
+  }
+]
+};
+
 
 router.post('/post', function(req, res, next) {
   console.log(req.body.para);
@@ -32,7 +36,7 @@ router.get('/getalluser',async function(req, res, next) {
 router.get('/updateUserDecision',async function(req, res, next) {
   update_result = await dbinfo.updateUserDecision("1","1");
   updated_data = await dbinfo.getUserData("1");
-  res.send({updated_data,update_result});
+  res.send({updated_data, update_result});
 });
 
 module.exports = router;

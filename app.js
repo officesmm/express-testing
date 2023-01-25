@@ -10,14 +10,16 @@ var cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var adminRouter = require('./routes/admin');
+var itemsRouter = require('./routes/items');
 
 var app = express();
 app.use(cors({origin: '*'}));
 app.options('*', cors());
 // Define paths for Express config
-const publicDirectoryPath = path.join(__dirname, '../public')  
-const viewsPath = path.join(__dirname, '/templates/views')
-const partialsPath = path.join(__dirname, '/templates/partials')
+const publicDirectoryPath = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '/templates/views');
+const partialsPath = path.join(__dirname, '/templates/partials');
 
 // Setup hbs engine and views location 
 app.set('view engine', 'hbs');
@@ -41,6 +43,8 @@ app.use(express.static(publicDirectoryPath));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
+app.use('/items', itemsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,5 +59,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports.handler = serverless(app); 
-// module.exports = app;
+// module.exports.handler = serverless(app); 
+module.exports = app;
