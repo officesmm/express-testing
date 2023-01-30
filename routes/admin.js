@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var dbinfo = require('.././db/mongodb');
 
 // function taber(){
 //   $("#sidemenu_" + table).css("display", "block");
@@ -13,6 +14,8 @@ taber = () => {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  // get_result = await dbinfo.getAllItem();
+
   res.render('admin/admin', { 
     title: 'Login',
     tab: 'table',

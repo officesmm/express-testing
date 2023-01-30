@@ -86,10 +86,10 @@
                 <nav class="nav navbar-nav">
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
-                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      John Doe
+                    <a href="javascript:;" class="user-profile" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                      Su Yamin Htut
                     </a>
-                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                    {{!-- <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;"> Profile</a>
                         <a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
@@ -97,7 +97,7 @@
                         </a>
                     <a class="dropdown-item"  href="javascript:;">Help</a>
                       <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                    </div>
+                    </div> --}}
                   </li>
                 </ul>
               </nav>
@@ -115,12 +115,6 @@
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -136,10 +130,6 @@
                   <div class="x_title">
                     <h2>Table design <small>Custom design</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -152,15 +142,12 @@
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
-                            <th class="column-title">Invoice </th>
-                            <th class="column-title">Invoice Date </th>
-                            <th class="column-title">Order </th>
-                            <th class="column-title">Bill to Name </th>
-                            <th class="column-title">Status </th>
-                            <th class="column-title">Amount </th>
+                            <th class="column-title">Name </th>
+                            <th class="column-title">Rating </th>
+                            <th class="column-title">Price </th>
+                            <th class="column-title">Desc </th>
+                            <th class="column-title">Color </th>
+                            <th class="column-title">Coupon Count </th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
@@ -169,20 +156,7 @@
                           </tr>
                         </thead>
 
-                        <tbody>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
+                        <tbody id="tablebody">
                         </tbody>
                       </table>
                     </div>
@@ -194,19 +168,47 @@
             </div>
           </div>
         </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
       </div>
     </div>
 
     {{>admin_scripts}} 
+
+    <script type="text/javascript">
+    $.ajax({
+      method: "GET",
+      crossDomain: true,
+      headers: {"Content-Type": "application/json"},
+      url: "/items/getAllItem",
+      dataType: 'json',
+      success: function (res) {
+        tabledatabind(res);
+      }, error: function (jqXHR, textStatus, errorThrown) {
+        console.log("jqXHR: " + jqXHR.responseText);
+        console.log("textStatus: " + textStatus);
+        console.log("errorThrown: " + errorThrown);
+      },
+    });
+
+    function tabledatabind(res){
+      let table_data_text = "";
+      res.get_result.forEach((element, index) => {
+        if (index % 2 === 0) {
+          table_data_text += '<tr class="even">';
+        } else {
+          table_data_text += '<tr class="odd">';
+        }
+        table_data_text += '<td class=" ">'+element.name+'</td>';
+        table_data_text += '<td class=" ">'+element.rating+'</td>';
+        table_data_text += '<td class=" ">'+element.price+'</td>';
+        table_data_text += '<td class=" ">'+element.longDesc+'</td>';
+        table_data_text += '<td class=" ">'+element.color.color+'</td>';
+        table_data_text += '<td class=" ">'+element.coupon.length+'</td>';
+        table_data_text += '<td class="last"><a href="/">Edit</a></td>';
+        table_data_text += '</tr>';
+      });
+      console.log(table_data_text);
+      document.getElementById("tablebody").innerHTML = table_data_text;
+    }
+    </script>
   </body>
 </html>
