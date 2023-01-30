@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const hbs = require('hbs');
 var cors = require('cors')
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +16,11 @@ var itemsRouter = require('./routes/items');
 
 var app = express();
 app.use(cors({origin: '*'}));
+app.use(bodyParser.raw({
+  inflate: true,
+  limit: '100kb',
+  type: 'application/octet-stream'
+}));
 app.options('*', cors());
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public');

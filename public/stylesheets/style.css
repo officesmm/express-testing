@@ -23,3 +23,11 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+input[type="color"] {
+    padding: 0;
+  border: none;
+  height: 40px;
+  width: 60px;
+  vertical-align: middle;
+}

@@ -1,8 +1,9 @@
 // CRUD create read update delete
 
-const { MongoClient, ObjectId } = require('mongodb')
+const { MongoClient, ObjectId } = require('mongodb');
+require("dotenv").config();
 
-const connectionURL = 'mongodb://root:root@ac-yijuer1-shard-00-00.debllze.mongodb.net:27017,ac-yijuer1-shard-00-01.debllze.mongodb.net:27017,ac-yijuer1-shard-00-02.debllze.mongodb.net:27017/?ssl=true&replicaSet=atlas-b4966w-shard-0&authSource=admin&retryWrites=true&w=majority';
+const connectionURL = process.env.MONGOLAB_URI;
 const databaseName = 'smm'
 
 const client = new MongoClient(connectionURL,{ useNewUrlParser: true });
@@ -103,10 +104,35 @@ async function getAllItem() {
     });
 }
 
+async function updateItem(itemObject) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var o_id = new ObjectId(itemObject._id);
+        await client.db("smm").collection('item').updateOne({ _id: o_id }, {$set:{
+          name: itemObject.name,
+          rating: itemObject.rating,
+          price: itemObject.price,
+          longDesc: itemObject.longDesc,
+          color: itemObject.color,
+          coupon: itemObject.coupon
+        }}, async (error, data) => {
+            if (error) {
+                console.log(error);
+                return console.log('Unable to fetch');
+            }
+            resolve(data);
+        });
+      } catch(e){
+        console.log("Result Data Error : "+e);
+      }
+    });
+}
+
 module.exports = {
   getItemWithObjectID,
   getUserData,
   updateUserDecision,
   insertNewItem,
-  getAllItem
+  getAllItem,
+  updateItem
 };

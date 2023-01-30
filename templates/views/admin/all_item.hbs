@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{>admin_links}} 
+
+    <title>Lotus Su</title>
+  </head>
+
+  <body class="nav-md">
+
+    <input id="tab" value="{{tab}}" hidden></input>
+    <input id="selection" value="{{selection}}" hidden></input>
+
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            {{>admin_top_menu}} 
+            <br/>
+            {{>admin_side_menu}} 
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <div class="nav toggle">
+                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <nav class="nav navbar-nav">
+                <ul class=" navbar-right">
+                  <li class="nav-item dropdown open" style="padding-left: 15px;">
+                    Su Yamin Htut
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Tables <small>Some examples to get you started</small></h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row" style="display: block;">
+             
+              <div class="clearfix"></div>
+
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Table design <small>Custom design</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p>
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th class="column-title">Name </th>
+                            <th class="column-title">Rating </th>
+                            <th class="column-title">Price </th>
+                            <th class="column-title">Desc </th>
+                            <th class="column-title">Color </th>
+                            <th class="column-title">Coupon Count </th>
+                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            </th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody id="tablebody">
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{>admin_scripts}} 
+
+    <script type="text/javascript">
+    $.ajax({
+      method: "GET",
+      crossDomain: true,
+      headers: {"Content-Type": "application/json"},
+      url: "/items/getAllItem",
+      dataType: 'json',
+      success: function (res) {
+        tabledatabind(res);
+      }, error: function (jqXHR, textStatus, errorThrown) {
+        console.log("jqXHR: " + jqXHR.responseText);
+        console.log("textStatus: " + textStatus);
+        console.log("errorThrown: " + errorThrown);
+      },
+    });
+    function tabledatabind(res){
+      let table_data_text = "";
+      // for (let index = 0; index < res.get_result.length; index++) {
+      // } // set up pager soon https://pagination.js.org/
+ 
+      res.get_result.forEach((element, index) => {
+        if (index % 2 === 0) {
+          table_data_text += '<tr class="even">';
+        } else {
+          table_data_text += '<tr class="odd">';
+        }
+        table_data_text += '<td class=" ">'+element.name+'</td>';
+        table_data_text += '<td class=" ">'+element.rating+'</td>';
+        table_data_text += '<td class=" ">'+element.price+'</td>';
+        table_data_text += '<td class=" ">'+element.longDesc+'</td>';
+        table_data_text += '<td class=" ">'+element.color.color+'</td>';
+        table_data_text += '<td class=" ">'+element.coupon.length+'</td>';
+        table_data_text += '<td class="last"><a href="/">Edit</a></td>';
+        table_data_text += '</tr>';
+      });
+      document.getElementById("tablebody").innerHTML = table_data_text;
+    }
+    </script>
+  </body>
+</html>
