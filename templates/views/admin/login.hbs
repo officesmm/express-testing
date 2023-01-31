@@ -26,7 +26,8 @@
                 <input id="login-password" type="password" class="form-control" placeholder="Password" autocomplete="on" required="" />
               </div>
               <div>
-                <button class="btn btn-primary" onclick="login()">Login</button>
+                <div class="btn btn-primary" onclick="login()">Login</div>
+                <button class="btn btn-primary" onclick="clear()">Clear</button>
               </div>
 
               <div class="clearfix"></div>
@@ -46,9 +47,19 @@
   {{>admin_scripts}} 
   <script type="text/javascript">
     function login() {
-     let loginuser = $("#login-username").val();
-     let loginpassword = $("#login-password").val();
-     window.open("http://localhost:3000/admin/all_item","_self");
+      let loginuser = $("#login-username").val();
+      let loginpassword = $("#login-password").val();
+      if(loginuser === "mycat" && loginpassword === "yourcat"){
+        localStorage.setItem('myCat', 'Tom');
+        window.open("http://localhost:3000/admin/all_item","_self");
+      }else{
+        console.log("wrong cat");
+      }
+    }
+
+    function clear() {
+      $("#login-username").val("");
+      $("#login-password").val("");
     }
 
   </script>
