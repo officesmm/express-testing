@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{>admin_links}} 
+    <title>Lotus Su</title>
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form>
+              <h1>Login to Lotus Su</h1>
+              <div>
+                <input id="login-username" type="text" class="form-control" placeholder="Username" autocomplete="on" required="" />
+              </div>
+              <div>
+                <input id="login-password" type="password" class="form-control" placeholder="Password" autocomplete="on" required="" />
+              </div>
+              <div>
+                <button class="btn btn-primary" onclick="login()">Login</button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <div>
+                  <p>If you want to create an account or forget password, please directly connect to the developer team.</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  {{>admin_scripts}} 
+  <script type="text/javascript">
+    function login() {
+     let loginuser = $("#login-username").val();
+     let loginpassword = $("#login-password").val();
+     window.open("http://localhost:3000/admin/all_item","_self");
+    }
+
+  </script>
+</html>

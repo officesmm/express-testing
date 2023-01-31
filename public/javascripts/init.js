@@ -35,9 +35,5 @@ $(document).ready(function(){
             },
         });
     console.log("if the car is shown ajax is working");
-
-    console.log($("#tab").val());
-    $("#sidemenu_" + $("#tab").val()).css("display", "block");
-    $("#sidemenu_" + $("#tab").val() + "_" + $("#selection").val()).addClass("active");
 });
 

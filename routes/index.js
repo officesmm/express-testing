@@ -8,4 +8,10 @@ router.get('/', function(req, res, next) {
     title: 'Soe Myat Min' });
 });
 
+router.get('/home', function(req, res, next) {
+  res.render('home', { 
+    image_source: 'https://smm-image-source.s3.ap-northeast-1.amazonaws.com',
+    title: 'Soe Myat Min' });
+});
+
 module.exports = router;
