@@ -10,6 +10,11 @@
     <title>Lotus Su</title>
 
     {{>admin_links}} 
+    <style type="text/css">
+      span.star-checked {
+        color: orange;
+      }
+    </style>
   </head>
 
   <body class="nav-md">
@@ -85,8 +90,17 @@
                       <label class="col-form-label col-md-3 col-sm-3 label-align" for="item-rating">Rating
                       </label>
                       <div class="col-md-6 col-sm-6 ">
-                        <input type="text" id="item-rating" name="last-name" required="required" class="form-control">
+                        <input type="text" id="item-rating" name="last-name" required="required" class="form-control" hidden>
+                        <div style="vertical-align: middle; padding-top: 4px;">
+                          <span id="star1" class="fa fa-star fa-2x" onclick="addingStar(1)"></span>
+                          <span id="star2" class="fa fa-star fa-2x" onclick="addingStar(2)"></span>
+                          <span id="star3" class="fa fa-star fa-2x" onclick="addingStar(3)"></span>
+                          <span id="star4" class="fa fa-star fa-2x" onclick="addingStar(4)"></span>
+                          <span id="star5" class="fa fa-star fa-2x" onclick="addingStar(5)"></span>
+                          
+                        </div>
                       </div>
+
                     </div>
 
                     <div class="item form-group">
@@ -245,6 +259,15 @@
           }else{
             // show error box
           }
+        }
+        function addingStar(num){
+          for (var i = 1; i <= num; i++) {
+            $("#star"+i).addClass("star-checked");
+          }
+          for (var i = (num+1); i <= 5; i++) {
+            $("#star"+i).removeClass("star-checked");
+          }
+          $("#item-rating").val(num);
         }
     </script>
   </body>

@@ -7,7 +7,7 @@ router.get('/login', function(req, res, next) {
   res.render('admin/login', { 
     image_source: 'https://smm-image-source.s3.ap-northeast-1.amazonaws.com',
     title: 'Login',
-    tab: '',
+    tab: 'login',
     selection: ''
   });
 });
