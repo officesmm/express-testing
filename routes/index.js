@@ -14,4 +14,8 @@ router.get('/home', function(req, res, next) {
     title: 'Soe Myat Min' });
 });
 
+router.get('/todaydate', async function(req, res, next) {  
+  var dateCode = new Date().getFullYear() + String(new Date().getMonth() + 1).padStart(2, '0') + String(new Date().getDate()).padStart(2, '0');
+  res.send(dateCode);
+});
 module.exports = router;

@@ -128,11 +128,44 @@ async function updateItem(itemObject) {
     });
 }
 
+async function deleteItem(itemObject) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var o_id = new ObjectId(itemObject._id);
+        await client.db("smm").collection('item').deleteOne({ _id: o_id }, async (error, data) => {
+            if (error) {
+                return console.log('Unable to delete');
+            }
+            resolve(data);
+        });
+      } catch(e){
+        console.log("Result Data Error : "+e);
+      }
+    });
+}
+
+async function deleteAllItem() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await client.db("smm").collection('item').deleteMany({}, async (error, data) => {
+            if (error) {
+                return console.log('Unable to delete');
+            }
+            resolve(data);
+        });
+      } catch(e){
+        console.log("Result Data Error : "+e);
+      }
+    });
+}
+
 module.exports = {
   getItemWithObjectID,
   getUserData,
   updateUserDecision,
   insertNewItem,
   getAllItem,
-  updateItem
+  updateItem,
+  deleteItem,
+  deleteAllItem
 };
