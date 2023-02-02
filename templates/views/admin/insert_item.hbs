@@ -90,7 +90,7 @@
                       <label class="col-form-label col-md-3 col-sm-3 label-align" for="item-rating">Rating
                       </label>
                       <div class="col-md-6 col-sm-6 ">
-                        <input type="text" id="item-rating" name="last-name" required="required" class="form-control" hidden>
+                        <input type="text" id="item-rating" required="required" class="form-control" hidden>
                         <div style="vertical-align: middle; padding-top: 4px;">
                           <span id="star1" class="fa fa-star fa-2x" onclick="addingStar(1)"></span>
                           <span id="star2" class="fa fa-star fa-2x" onclick="addingStar(2)"></span>
@@ -107,7 +107,7 @@
                       <label class="col-form-label col-md-3 col-sm-3 label-align" for="item-price">Price <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 ">
-                        <input type="text" id="item-price" name="last-name" required="required" class="form-control">
+                        <input type="text" id="item-price" required="required" class="form-control">
                       </div>
                     </div>
 
@@ -115,7 +115,7 @@
                       <label class="col-form-label col-md-3 col-sm-3 label-align" for="item-desc">Long Description 
                       </label>
                       <div class="col-md-6 col-sm-6 ">
-                        <input type="text" id="item-desc" name="last-name" required="required" class="form-control">
+                        <input type="text" id="item-desc"required="required" class="form-control">
                       </div>
                     </div>
 
@@ -123,7 +123,7 @@
                       <label class="col-form-label col-md-3 col-sm-3 label-align" for="item-color-name">Color Name 
                       </label>
                       <div class="col-md-6 col-sm-6 ">
-                        <input type="text" id="item-color-name" name="last-name" required="required" class="form-control">
+                        <input type="text" id="item-color-name" required="required" class="form-control">
                       </div>
                     </div>
 
@@ -131,7 +131,7 @@
                       <label class="col-form-label col-md-3 col-sm-3 label-align" for="item-color-code">Color Code 
                       </label>
                       <div class="col-md-1 col-sm-1">
-                        <input type="color" id="item-color-code" name="last-name" required="required" class="form-control">
+                        <input type="color" id="item-color-code" required="required" class="form-control">
                       </div>
                     </div>
                     <div class="ln_solid"></div>
@@ -165,6 +165,7 @@
     </div>
 
     {{>admin_scripts}} 
+    {{>admin_security}} 
 
     <script type="text/javascript">
         var couponCodeTab = "";
@@ -178,7 +179,7 @@
           couponCodeTab += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="item-coupon-code">Coupon Code<span class="required">*</span>';
           couponCodeTab += '</label>';
           couponCodeTab += '<div class="col-md-6 col-sm-6 ">';
-          couponCodeTab += '<input type="text" id="item-coupon-code'+couponCodeTabCount+'" name="last-name" required="required" class="form-control" disabled value='+createRandomKey(6)+'>';
+          couponCodeTab += '<input type="text" id="item-coupon-code'+couponCodeTabCount+'" required="required" class="form-control" disabled value='+createRandomKey(6)+'>';
           couponCodeTab += '</div> </div>';
           couponCodeTab += '';
           couponCodeTab += '<div class="item form-group">';
@@ -195,12 +196,11 @@
           couponCodeTab += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="item-coupon-value">Coupon Value </label>';
           couponCodeTab += '<div class="col-md-6 col-sm-6 ">';
           couponCodeTab += '';
-          couponCodeTab += '<input type="text" id="item-coupon-value'+couponCodeTabCount+'" name="last-name" required="required" class="form-control">';
+          couponCodeTab += '<input type="text" id="item-coupon-value'+couponCodeTabCount+'" required="required" class="form-control">';
           couponCodeTab += '</div> </div>';
 
           document.getElementById("addingcoupon").innerHTML = couponCodeTab;
         }
-
         function addNewItem(){
           let couponarr = [];
           for (var i = 0; i < couponCodeTabCount; i++) {
@@ -241,7 +241,6 @@
                 },
               });
         }
-
         function createRandomKey(length) {
           let result = '';
           const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -269,6 +268,7 @@
           }
           $("#item-rating").val(num);
         }
+
     </script>
   </body>
 </html>

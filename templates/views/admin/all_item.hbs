@@ -109,6 +109,7 @@
     </div>
 
     {{>admin_scripts}} 
+    {{>admin_security}} 
 
     <script type="text/javascript">
 
@@ -116,25 +117,26 @@
       const cat = localStorage.getItem('myCat');
       if(cat === "Tom"){
         console.log('loading data');
-      }else{
-        console.log('unsuccessful login, back to login page');
+        showAllItem();
       }
     });
 
-    $.ajax({
-      method: "GET",
-      crossDomain: true,
-      headers: {"Content-Type": "application/json"},
-      url: "/items/getAllItem",
-      dataType: 'json',
-      success: function (res) {
-        tabledatabind(res);
-      }, error: function (jqXHR, textStatus, errorThrown) {
-        console.log("jqXHR: " + jqXHR.responseText);
-        console.log("textStatus: " + textStatus);
-        console.log("errorThrown: " + errorThrown);
-      },
-    });
+    function showAllItem() {
+      $.ajax({
+        method: "GET",
+        crossDomain: true,
+        headers: {"Content-Type": "application/json"},
+        url: "/items/getAllItem",
+        dataType: 'json',
+        success: function (res) {
+          tabledatabind(res);
+        }, error: function (jqXHR, textStatus, errorThrown) {
+          console.log("jqXHR: " + jqXHR.responseText);
+          console.log("textStatus: " + textStatus);
+          console.log("errorThrown: " + errorThrown);
+        },
+      });
+    }
 
     function tabledatabind(res){
       let table_data_text = "";

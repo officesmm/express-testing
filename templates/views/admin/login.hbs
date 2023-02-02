@@ -19,17 +19,22 @@
           <section class="login_content">
             <form>
               <h1>Login to Lotus Su</h1>
-              <div>
-                <input id="login-username" type="text" class="form-control" placeholder="Username" autocomplete="on" required="" />
+              <div id="errorbox" hidden>
+                <p class="align-center" style="color:red">Username or password is wrong</p>
               </div>
               <div>
-                <input id="login-password" type="password" class="form-control" placeholder="Password" autocomplete="on" required="" />
+                <input id="login-username" type="text" class="form-control" placeholder="Username" autocomplete="on" required="" onKeyPress="if (event.which == 13) return false;"/>
               </div>
+              <br>
               <div>
-                <div class="btn btn-primary" onclick="login()">Login</div>
-                <button class="btn btn-primary" onclick="clear()">Clear</button>
+                <input id="login-password" type="password" class="form-control" placeholder="Password" autocomplete="on" required="" onKeyPress="if (event.which == 13) return false;"/>
               </div>
-
+              <br>
+            </form>
+              <div style="margin-top: -15px">
+                <button class="btn btn-primary" onclick="login()">Login</button>
+                <button class="btn btn-primary" onclick="clearing()">Clear</button>
+              </div>
               <div class="clearfix"></div>
 
               <div class="separator">
@@ -37,7 +42,7 @@
                   <p>If you want to create an account or forget password, please directly connect to the developer team.</p>
                 </div>
               </div>
-            </form>
+
           </section>
         </div>
       </div>
@@ -50,16 +55,21 @@
       let loginuser = $("#login-username").val();
       let loginpassword = $("#login-password").val();
       if(loginuser === "mycat" && loginpassword === "yourcat"){
+        console.log("success");
         localStorage.setItem('myCat', 'Tom');
-        window.open("http://localhost:3000/admin/all_item","_self");
+        window.open("/admin/all_item","_self");
       }else{
-        console.log("wrong cat");
+        console.log("fail");
+        localStorage.removeItem('myCat');
+        $('#errorbox').removeAttr('hidden');
       }
     }
 
-    function clear() {
+    function clearing() {
+      console.log("clearing");
       $("#login-username").val("");
       $("#login-password").val("");
+      $('#errorbox').attr('hidden');
     }
 
   </script>
