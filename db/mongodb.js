@@ -18,7 +18,7 @@ async function connectionTest() {
   }
 }
 
-async function getItemWithObjectID(tableName, id) {
+async function getDataWithObjectID(tableName, id) {
     return new Promise(async (resolve, reject) => {
       try {
         var o_id = new ObjectId(id);
@@ -36,6 +36,70 @@ async function getItemWithObjectID(tableName, id) {
     });
 }
 
+async function getAllItem(tableName) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var arr = [];
+        await client.db("smm").collection(tableName).find({}).toArray (async (error, data) => {
+            if (error) {
+                console.log(error);
+                return console.log('Unable to fetch');
+            }
+            resolve(data);
+        });
+      } catch(e){
+        console.log("Result Data Error : "+e);
+      }
+    });
+}
+
+async function dropingTable(tableName) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await client.db("smm").collection(tableName).deleteMany({}, async (error, data) => {
+            if (error) {
+                return console.log('Unable to delete');
+            }
+            resolve(data);
+        });
+      } catch(e){
+        console.log("Result Data Error : "+e);
+      }
+    });
+}
+
+async function deleteByID(tableName,id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await client.db("smm").collection(tableName).deleteMany({}, async (error, data) => {
+            if (error) {
+                return console.log('Unable to delete');
+            }
+            resolve(data);
+        });
+      } catch(e){
+        console.log("Result Data Error : "+e);
+      }
+    });
+}
+
+async function insertNewOneItemToDB(tableName, itemObject) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await client.db("smm").collection(tableName).insertOne(itemObject, async (error, user) => {
+            if (error) {
+                console.log(error);
+                return console.log('Unable to fetch');
+            }
+            resolve(user);
+        });
+      } catch(e){
+        console.log("getUserData: "+e);
+      }
+    });
+}
+
+// end of common database access 
 
 async function getUserData(userID) {
     return new Promise(async (resolve, reject) => {
@@ -87,22 +151,6 @@ async function insertNewItem(item) {
     });
 }
 
-async function getAllItem() {
-    return new Promise(async (resolve, reject) => {
-      try {
-        var arr = [];
-        await client.db("smm").collection('item').find({}).toArray (async (error, data) => {
-            if (error) {
-                console.log(error);
-                return console.log('Unable to fetch');
-            }
-            resolve(data);
-        });
-      } catch(e){
-        console.log("Result Data Error : "+e);
-      }
-    });
-}
 
 async function updateItem(itemObject) {
     return new Promise(async (resolve, reject) => {
@@ -144,28 +192,36 @@ async function deleteItem(itemObject) {
     });
 }
 
-async function deleteAllItem() {
+
+// URL update
+async function insertNewURL(item) {
     return new Promise(async (resolve, reject) => {
       try {
-        await client.db("smm").collection('item').deleteMany({}, async (error, data) => {
+        await client.db("smm").collection('urlLink').insertOne(item, async (error, user) => {
             if (error) {
-                return console.log('Unable to delete');
+                console.log(error);
+                return console.log('Unable to fetch');
             }
-            resolve(data);
+            resolve(user);
         });
       } catch(e){
-        console.log("Result Data Error : "+e);
+        console.log("getUserData: "+e);
       }
     });
 }
 
+// pd data 
+
+
+
 module.exports = {
-  getItemWithObjectID,
+  getDataWithObjectID,
   getUserData,
   updateUserDecision,
   insertNewItem,
   getAllItem,
   updateItem,
   deleteItem,
-  deleteAllItem
+  dropingTable,
+  insertNewURL
 };

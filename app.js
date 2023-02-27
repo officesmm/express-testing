@@ -13,6 +13,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var itemsRouter = require('./routes/items');
+var urldataRouter = require('./routes/urldata');
+var PDUser = require('./routes/pddata');
 
 var app = express();
 app.use(cors({origin: '*'}));
@@ -51,6 +53,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/items', itemsRouter);
+app.use('/url', urldataRouter);
+app.use('/pduser', PDUser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
